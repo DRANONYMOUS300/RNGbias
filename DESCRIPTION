@@ -1,0 +1,12 @@
+Package: RNGbias
+Type: Package
+Title: Calculates common cognitive biases in simple random number generation (RNG)
+Version: 0.1.0
+Author:     person("Martin", "Steppan", , "mhsteppan@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-6196-9689"))
+Maintainer: Martin Steppan <mhsteppanf@gmail.com>
+Description: This package calculates common biases in simple random number generation tasks (RNG). These biases are (1) prime number avoidance, (2) even number preference, (3) digit zero preference, (4) digit five preference, (5) multiples of 5 preference, (6) multiples of 10 preference and (7) centrality bias. The package also calculates a composite score indicating the latent dimension behind these biases (Simplex number bias). The package compares the answers given to a simulated dataset as a benchmark for true randomness (uniform distribution). 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.1
