@@ -6,7 +6,7 @@ This package calculates common biases in simple random number generation tasks (
 
 ```R 
 library(devtools)
-install_github("dranonymous3000/RNGbias")
+install_github("dranonymous300/RNGbias")
 library(RNGbias)
 ```
 
@@ -49,7 +49,7 @@ data <- data.frame(r1=c(10,20,30,40),r2=c(1,2,3,4),r3=c(1000,2000,3000,4000))
 lowerlimits <- c(1,1,1000)
 upperlimits <- c(50,10,5000)
 
-bias <- RNGbias(data, lowerlimits, upperlimits)
+bias <- RNGbiases(data, lowerlimits, upperlimits)
 
 
 ```
