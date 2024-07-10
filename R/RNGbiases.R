@@ -76,7 +76,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   mult10 <- is_multiple(numbers, 10)
   c0 <- count_digit(numbers, 0)
   c5 <- count_digit(numbers, 5)
-  central <- centrality(numbers, mins, maxs)
+  central <- centrality(numbers)
   repdigit <- is_schnapszahl2(numbers)
 
 
@@ -86,7 +86,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   mult10_sim <- is_multiple(sim1M, 10)
   c0_sim <- count_digit(sim1M, 0)
   c5_sim <- count_digit(sim1M, 5)
-  central_sim <- centrality(sim1M, mins, maxs)
+  central_sim <- centrality(sim1M)
   repdigit_sim <- is_schnapszahl2(sim1M)
 
 
