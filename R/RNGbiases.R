@@ -106,7 +106,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   c0perc_sim <- rowMeans(c0_sim, na.rm = T)
   c5perc_sim <- rowMeans(c5_sim, na.rm = T)
   centralperc_sim <- rowMeans(central_sim, na.rm = T)
-  repdigitperc_sim <- rowMeans(repdigit:sim, na.rm = T)
+  repdigitperc_sim <- rowMeans(repdigit_sim, na.rm = T)
 
   rawbiassim <- data.frame(cbind(primesperc_sim,evenperc_sim,mult5perc_sim,mult10perc_sim,c0perc_sim,c5perc_sim,centralperc_sim,repdigitperc_sim))
 
