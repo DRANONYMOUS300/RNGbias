@@ -77,6 +77,8 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   c0 <- count_digit(numbers, 0)
   c5 <- count_digit(numbers, 5)
   central <- centrality(numbers, mins, maxs)
+  repdigit <- is_schnapszahl2(numbers)
+
 
   primes_sim <- is_prime2(sim1M)
   even_sim <- is_multiple(sim1M, 2)
@@ -85,6 +87,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   c0_sim <- count_digit(sim1M, 0)
   c5_sim <- count_digit(sim1M, 5)
   central_sim <- centrality(sim1M, mins, maxs)
+  repdigit_sim <- is_schnapszahl2(sim1M)
 
 
   primesperc <- rowMeans(primes, na.rm = T)
@@ -94,6 +97,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   c0perc <- rowMeans(c0, na.rm = T)
   c5perc <- rowMeans(c5, na.rm = T)
   centralperc <- rowMeans(central, na.rm = T)
+  repdigitperc <- rowMeans(repdigit, na.rm = T)
 
   primesperc_sim <- rowMeans(primes_sim, na.rm = T)
   evenperc_sim <- rowMeans(even_sim, na.rm = T)
@@ -102,10 +106,11 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   c0perc_sim <- rowMeans(c0_sim, na.rm = T)
   c5perc_sim <- rowMeans(c5_sim, na.rm = T)
   centralperc_sim <- rowMeans(central_sim, na.rm = T)
+  repdigitperc_sim <- rowMeans(repdigit:sim, na.rm = T)
 
-  rawbiassim <- data.frame(cbind(primesperc_sim,evenperc_sim,mult5perc_sim,mult10perc_sim,c0perc_sim,c5perc_sim,centralperc_sim))
+  rawbiassim <- data.frame(cbind(primesperc_sim,evenperc_sim,mult5perc_sim,mult10perc_sim,c0perc_sim,c5perc_sim,centralperc_sim,repdigitperc_sim))
 
-  rawbiasperc <- data.frame(cbind(primesperc,evenperc,mult5perc,mult10perc,c0perc,c5perc,centralperc))
+  rawbiasperc <- data.frame(cbind(primesperc,evenperc,mult5perc,mult10perc,c0perc,c5perc,centralperc,repdigitperc))
   biaspercZ <- data.frame(matrix(NA,nrow=nrow(numbers),ncol=ncol(rawbiasperc)))
 
   for (i in 1:nrow(numbers)){
@@ -117,9 +122,11 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
 
   }
 
-  colnames(biaspercZ) <- c("primesZ","evenZ","mult5Z","mult10Z","c0Z","c5Z","centralityZ")
+  colnames(biaspercZ) <- c("primesZ","evenZ","mult5Z","mult10Z","c0Z","c5Z","centralityZ","repdigitZ")
 
-  result <- list(rawbias = rawbiasperc, biasZ = biaspercZ, primes = primes, even = even)
+  result <- list(rawbias = rawbiasperc, biasZ = biaspercZ, primes = primes, even = even, mult5 = mult5, mult10 = mult10, digit0 = c0, digit5 = c5, central = central, repdigit = repdigit)
+
+
 
   invertedPrime <- biaspercZ
   invertedPrime[,1] <- invertedPrime[,1]*-1
