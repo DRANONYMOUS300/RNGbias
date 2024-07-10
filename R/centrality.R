@@ -9,14 +9,15 @@
 #' @export
 
 
-centrality <- function(numbers, maxs, mins) {
-  # Ensure maxs and mins are vectors with the same length as the number of columns in numbers
-  if (length(maxs) != ncol(numbers) | length(mins) != ncol(numbers)) {
-    stop("maxs and mins must have the same length as the number of columns in numbers")
-  }
+centrality <- function(numbers) {
+  # Standardize the numbers using the scale function
 
-  # Centrality calculation
-  central <- 1 - 2 * abs(numbers - matrix((maxs + mins)/2, nrow = nrow(numbers), ncol = ncol(numbers), byrow = TRUE)) / matrix((maxs - mins), nrow = nrow(numbers), ncol = ncol(numbers), byrow = TRUE)
+
+  # Calculate decentrality as the row-wise mean of the absolute values of the standardized numbers
+  decentral <- as.matrix(abs(scale(numbers)))
+
+  # Apply the custom logarithmic transformation
+  central <- log(1 / (1 + decentral))
 
   return(central)
 }
