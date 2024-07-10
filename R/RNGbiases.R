@@ -129,7 +129,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
 
   compositeZ <- rowMeans(biaspercZ,na.rm=T)
 
-  result <- list(compositebiasZ = compositeZ, rawbias = rawbiasperc, biasZ = biaspercZ, primes = primes, even = even, mult5 = mult5, mult10 = mult10, c0 = c0, c5 = c5, central = central, repdigit = repdigit)
+  result <- list(compositebiasZ = compositeZ, rawbias = rawbiasperc, biasZ = biaspercZ, biasSim = rawbiassim, primes = primes, even = even, mult5 = mult5, mult10 = mult10, c0 = c0, c5 = c5, central = central, repdigit = repdigit)
 
   result
 
