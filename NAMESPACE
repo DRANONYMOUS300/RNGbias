@@ -3,3 +3,8 @@
 export(RNGbiases)
 export(centrality)
 export(count_digit)
+export(centrality)
+export(is_prime)
+export(is_prime2)
+export(popularity)
+
