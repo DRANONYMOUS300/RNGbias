@@ -7,4 +7,4 @@ export(centrality)
 export(is_prime)
 export(is_prime2)
 export(popularity)
-
+export(lownumber)
