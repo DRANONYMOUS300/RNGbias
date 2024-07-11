@@ -78,6 +78,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   c5 <- count_digit(numbers, 5)
   central <- centrality(numbers)
   repdigit <- is_schnapszahl2(numbers)
+  pop <- popularity(numbers)
 
 
   primes_sim <- is_prime2(sim1M)
@@ -88,7 +89,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   c5_sim <- count_digit(sim1M, 5)
   central_sim <- centrality(sim1M)
   repdigit_sim <- is_schnapszahl2(sim1M)
-
+  pop_sim <- popularity(sim1M)
 
   primeavoidanceperc <- rowMeans(1 - primes, na.rm = T)
   evenperc <- rowMeans(even, na.rm = T)
@@ -98,6 +99,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   c5perc <- rowMeans(c5, na.rm = T)
   centralperc <- rowMeans(central, na.rm = T)
   repdigitperc <- rowMeans(repdigit, na.rm = T)
+  popperc <- rowMeans(pop, na.rm = T)
 
   primeavoidanceperc_sim <- rowMeans(1 - primes_sim, na.rm = T)
   evenperc_sim <- rowMeans(even_sim, na.rm = T)
@@ -107,10 +109,11 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   c5perc_sim <- rowMeans(c5_sim, na.rm = T)
   centralperc_sim <- rowMeans(central_sim, na.rm = T)
   repdigitperc_sim <- rowMeans(repdigit_sim, na.rm = T)
+  popperc_sim <- rowMeans(pop_sim, na.rm = T)
 
-  rawbiassim <- data.frame(cbind(primeavoidanceperc_sim,evenperc_sim,mult5perc_sim,mult10perc_sim,c0perc_sim,c5perc_sim,centralperc_sim,repdigitperc_sim))
+  rawbiassim <- data.frame(cbind(primeavoidanceperc_sim,evenperc_sim,mult5perc_sim,mult10perc_sim,c0perc_sim,c5perc_sim,centralperc_sim,repdigitperc_sim, popperc_sim))
 
-  rawbiasperc <- data.frame(cbind(primeavoidanceperc,evenperc,mult5perc,mult10perc,c0perc,c5perc,centralperc,repdigitperc))
+  rawbiasperc <- data.frame(cbind(primeavoidanceperc,evenperc,mult5perc,mult10perc,c0perc,c5perc,centralperc,repdigitperc, popperc))
   biaspercZ <- data.frame(matrix(NA,nrow=nrow(numbers),ncol=ncol(rawbiasperc)))
 
   for (i in 1:nrow(numbers)){
@@ -122,14 +125,14 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
 
   }
 
-  colnames(biaspercZ) <- c("primeavoidanceZ","evenZ","mult5Z","mult10Z","c0Z","c5Z","centralityZ","repdigitZ")
+  colnames(biaspercZ) <- c("primeavoidanceZ","evenZ","mult5Z","mult10Z","c0Z","c5Z","centralityZ","repdigitZ", "popularityZ")
 
 
 
 
   compositeZ <- rowMeans(biaspercZ,na.rm=T)
 
-  result <- list(compositebiasZ = compositeZ, rawbias = rawbiasperc, biasZ = biaspercZ, biasSim = rawbiassim, primes = primes, even = even, mult5 = mult5, mult10 = mult10, c0 = c0, c5 = c5, central = central, repdigit = repdigit)
+  result <- list(compositebiasZ = compositeZ, rawbias = rawbiasperc, biasZ = biaspercZ, biasSim = rawbiassim, primes = primes, even = even, mult5 = mult5, mult10 = mult10, c0 = c0, c5 = c5, central = central, repdigit = repdigit, popularity = pop)
 
   result
 
