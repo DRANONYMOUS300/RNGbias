@@ -78,7 +78,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   c5 <- count_digit(numbers, 5)
   central <- centrality(numbers)
   repdigit <- is_schnapszahl2(numbers)
-  pop <- popularity(numbers)
+  pop <- popularity(numbers, mins, maxs)
 
 
   primes_sim <- is_prime2(sim1M)
@@ -89,7 +89,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   c5_sim <- count_digit(sim1M, 5)
   central_sim <- centrality(sim1M)
   repdigit_sim <- is_schnapszahl2(sim1M)
-  pop_sim <- popularity(sim1M)
+  pop_sim <- popularity(sim1M, mins, maxs)
 
   primeavoidanceperc <- rowMeans(1 - primes, na.rm = T)
   evenperc <- rowMeans(even, na.rm = T)
