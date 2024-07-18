@@ -129,6 +129,8 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
 
   }
 
+  biaspercZ$popularityZ <- scale(popperc)
+
   colnames(biaspercZ) <- c("primeavoidanceZ","evenZ","mult5Z","mult10Z","c0Z","c5Z","centralityZ","popularityZ")
 
 
