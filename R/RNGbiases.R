@@ -117,7 +117,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
 
   rawbiassim <- data.frame(cbind(primeavoidanceperc_sim,evenperc_sim,mult5perc_sim,mult10perc_sim,c0perc_sim,c5perc_sim,centralperc_sim,popperc_sim))
 
-  rawbiasperc <- data.frame(cbind(primeavoidanceperc,evenperc,mult5perc,mult10perc,c0perc,c5perc,centralperc,repdigitperc, popperc, lnbperc))
+  rawbiasperc <- data.frame(cbind(primeavoidanceperc,evenperc,mult5perc,mult10perc,c0perc,c5perc,centralperc,popperc))
   biaspercZ <- data.frame(matrix(NA,nrow=nrow(numbers),ncol=ncol(rawbiasperc)))
 
   for (i in 1:nrow(numbers)){
