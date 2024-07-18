@@ -115,7 +115,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   popperc_sim <- rowMeans(pop_sim, na.rm = T)
   lnbperc_sim <- rowMeans(lnb_sim, na.rm = T)
 
-  rawbiassim <- data.frame(cbind(primeavoidanceperc_sim,evenperc_sim,mult5perc_sim,mult10perc_sim,c0perc_sim,c5perc_sim,centralperc_sim,repdigitperc_sim, popperc_sim, lnbperc_sim))
+  rawbiassim <- data.frame(cbind(primeavoidanceperc_sim,evenperc_sim,mult5perc_sim,mult10perc_sim,c0perc_sim,c5perc_sim,centralperc_sim,popperc_sim))
 
   rawbiasperc <- data.frame(cbind(primeavoidanceperc,evenperc,mult5perc,mult10perc,c0perc,c5perc,centralperc,repdigitperc, popperc, lnbperc))
   biaspercZ <- data.frame(matrix(NA,nrow=nrow(numbers),ncol=ncol(rawbiasperc)))
@@ -129,7 +129,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
 
   }
 
-  colnames(biaspercZ) <- c("primeavoidanceZ","evenZ","mult5Z","mult10Z","c0Z","c5Z","centralityZ","repdigitZ", "popularityZ", "lownumberZ")
+  colnames(biaspercZ) <- c("primeavoidanceZ","evenZ","mult5Z","mult10Z","c0Z","c5Z","centralityZ","popularityZ")
 
 
 
