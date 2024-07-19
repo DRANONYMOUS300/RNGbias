@@ -118,6 +118,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   observed_binary <- list(primes, even, mult5, mult10, c0, c5, central2, pop2)
 
 
+
   primeavoidanceperc <- rowMeans(1 - primes, na.rm = T)
   evenperc <- rowMeans(even, na.rm = T)
   mult5perc <- rowMeans(mult5, na.rm = T)
@@ -169,12 +170,58 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
 
 
 
+  OddsRatios <- data.frame(matrix(NA,nrow=length(simulated_binary),ncol=4))
+
+  cn <- c("Prime numbers", "Even numbers", "Multiples of 5", "Multiples of 10", "Digit Zero", "Digit Five", "Central numbers (PR25-PR75)", "Popular numbers (Top 10%)")
+
+
+
+  for (j in 1:length(simulated_binary)) {
+
+    data <- c(as.vector(as.matrix(simulated_binary[[j]])),as.vector(as.matrix(observed_binary[[j]])))
+    n <- length(as.matrix(obs[[j]]))
+
+    group <- c(rep(0,20000000),rep(1,n))
+
+
+    mod <- glm(data ~ group, family="binomial")
+    c <- exp(coef(mod))
+
+    s <- summary(mod)
+
+
+    coefficients <- coef(mod)
+    std_errors <- summary(mod)$coefficients[, "Std. Error"]
+
+    # Calculate odds ratios
+    odds_ratios <- exp(coefficients)
+
+    # Calculate 95% confidence intervals using normal approximation
+    z_value <- 1.96  # for 95% CI
+    lower_ci <- exp(coefficients - z_value * std_errors)
+    upper_ci <- exp(coefficients + z_value * std_errors)
+    conf_intervals <- cbind(lower_ci, upper_ci)
+
+    # Print odds ratios and their confidence intervals
+    odds_ratios
+    conf_intervals
+
+    OddsRatios[j, 1] <- cn[j]
+    OddsRatios[j, 2] <- odds_ratios
+    OddsRatios[j, 3] <- lower_ci
+    OddsRatios[j, 4] <- upper_ci
+    OddsRatios[j, 5] <- s$coefficients[2,4]
+
+
+
+  }
+
+  colnames(OddsRatios) <- c("Bias", "OR", "Lower_CI_95","Upper_CI_95","pval")
 
 
 
 
-
-  result <- list(compositebiasZ = compositeZ, rawbias = rawbiasperc, biasZ = biaspercZ, biasSim = rawbiassim, primes = primes, even = even, mult5 = mult5, mult10 = mult10, c0 = c0, c5 = c5, central = central, repdigit = repdigit, popularity = pop, lownumber = lnb)
+  result <- list(compositebiasZ = compositeZ, rawbias = rawbiasperc, biasZ = biaspercZ, biasSim = rawbiassim, primes = primes, even = even, mult5 = mult5, mult10 = mult10, c0 = c0, c5 = c5, central = central, repdigit = repdigit, popularity = pop, lownumber = lnb, OddsRatios = OddsRatios)
 
   result
 
