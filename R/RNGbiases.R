@@ -133,14 +133,14 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
 
   }
 
-  biaspercZ[,8] <- scale(popperc)
-
-  colnames(biaspercZ) <- c("primeavoidanceZ","evenZ","mult5Z","mult10Z","c0Z","c5Z","centralityZ","popularityZ")
 
 
+  colnames(biaspercZ) <- c("primeavoidanceZ","evenZ","mult5Z","mult10Z","c0Z","c5Z","centralityZ","popularityZ", "popularityZ2")
 
 
-  compositeZ <- rowMeans(biaspercZ,na.rm=T)
+
+
+  compositeZ <- rowMeans(biaspercZ[,c(1,2,3,4,5,6,7,9)],na.rm=T)
 
   result <- list(compositebiasZ = compositeZ, rawbias = rawbiasperc, biasZ = biaspercZ, biasSim = rawbiassim, primes = primes, even = even, mult5 = mult5, mult10 = mult10, c0 = c0, c5 = c5, central = central, repdigit = repdigit, popularity = pop, lownumber = lnb)
 
