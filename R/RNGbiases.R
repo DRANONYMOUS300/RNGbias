@@ -79,6 +79,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   central <- centrality(numbers)
   repdigit <- is_schnapszahl2(numbers)
   pop <- popularity(numbers, mins, maxs)
+  pop2 <- popularity_bin(numbers, mins, maxs)
   lnb <- lownumber(numbers, mins, maxs)
 
 
@@ -91,6 +92,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   central_sim <- centrality(sim1M)
   repdigit_sim <- is_schnapszahl2(sim1M)
   pop_sim <- popularity(sim1M, mins, maxs)
+  pop2_sim <- popularity_bin(sim1M, mins, maxs)
   lnb_sim <- lownumber(sim1M, mins, maxs)
 
   primeavoidanceperc <- rowMeans(1 - primes, na.rm = T)
@@ -102,6 +104,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   centralperc <- rowMeans(central, na.rm = T)
   repdigitperc <- rowMeans(repdigit, na.rm = T)
   popperc <- rowMeans(pop, na.rm = T)
+  popperc2 <- rowMeans(pop2, na.rm = T)
   lnbperc <- rowMeans(lnb, na.rm = T)
 
   primeavoidanceperc_sim <- rowMeans(1 - primes_sim, na.rm = T)
@@ -114,10 +117,11 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   repdigitperc_sim <- rowMeans(repdigit_sim, na.rm = T)
   popperc_sim <- rowMeans(pop_sim, na.rm = T)
   lnbperc_sim <- rowMeans(lnb_sim, na.rm = T)
+  popperc2_sim <- rowMeans(pop2_sim, na.rm = T)
 
-  rawbiassim <- data.frame(cbind(primeavoidanceperc_sim,evenperc_sim,mult5perc_sim,mult10perc_sim,c0perc_sim,c5perc_sim,centralperc_sim,popperc_sim))
 
-  rawbiasperc <- data.frame(cbind(primeavoidanceperc,evenperc,mult5perc,mult10perc,c0perc,c5perc,centralperc,popperc))
+  rawbiassim <- data.frame(cbind(primeavoidanceperc_sim,evenperc_sim,mult5perc_sim,mult10perc_sim,c0perc_sim,c5perc_sim,centralperc_sim,popperc_sim,popperc2_sim))
+  rawbiasperc <- data.frame(cbind(primeavoidanceperc,evenperc,mult5perc,mult10perc,c0perc,c5perc,centralperc,popperc,popperc2))
   biaspercZ <- data.frame(matrix(NA,nrow=nrow(numbers),ncol=ncol(rawbiasperc)))
 
   for (i in 1:nrow(numbers)){
