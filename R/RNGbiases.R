@@ -179,9 +179,14 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
   for (j in 1:length(simulated_binary)) {
 
     data <- c(as.vector(as.matrix(simulated_binary[[j]])),as.vector(as.matrix(observed_binary[[j]])))
-    n <- length(as.matrix(obs[[j]]))
+    n <- length(as.matrix(observed_binary[[j]]))
 
-    group <- c(rep(0,20000000),rep(1,n))
+    data[data > 1] <- 1
+
+
+    nn <- nrow(simulated_binary) * ncol(simulated_binary)
+
+    group <- c(rep(0,nn),rep(1,n))
 
 
     mod <- glm(data ~ group, family="binomial")
