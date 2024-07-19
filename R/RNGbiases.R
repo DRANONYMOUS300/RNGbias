@@ -184,7 +184,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
     data[data > 1] <- 1
 
 
-    nn <- nrow(simulated_binary) * ncol(simulated_binary)
+    nn <- nrow(simulated_binary[[j]]) * ncol(simulated_binary[[j]])
 
     group <- c(rep(0,nn),rep(1,n))
 
@@ -212,9 +212,9 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
     conf_intervals
 
     OddsRatios[j, 1] <- cn[j]
-    OddsRatios[j, 2] <- odds_ratios
-    OddsRatios[j, 3] <- lower_ci
-    OddsRatios[j, 4] <- upper_ci
+    OddsRatios[j, 2] <- odds_ratios[2]
+    OddsRatios[j, 3] <- lower_ci[2]
+    OddsRatios[j, 4] <- upper_ci[2]
     OddsRatios[j, 5] <- s$coefficients[2,4]
 
 
@@ -226,7 +226,7 @@ RNGbiases <- function(data, mins, maxs, nsim = 10000, seed = 123456789) {
 
 
 
-  result <- list(compositebiasZ = compositeZ, rawbias = rawbiasperc, biasZ = biaspercZ, biasSim = rawbiassim, primes = primes, even = even, mult5 = mult5, mult10 = mult10, c0 = c0, c5 = c5, central = central, repdigit = repdigit, popularity = pop, lownumber = lnb, OddsRatios = OddsRatios)
+  result <- list(compositebiasZ = compositeZ, rawbias = rawbiasperc, biasZ = biaspercZ, biasSim = rawbiassim, primes = primes, even = even, mult5 = mult5, mult10 = mult10, c0 = c0, c5 = c5, central = central, central2 = central2, popularity = pop, popularity2 = pop2, lownumber = lnb, OddsRatios = OddsRatios)
 
   result
 
