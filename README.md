@@ -60,7 +60,7 @@ bias <- RNGbiases(data, lowerlimits, upperlimits)
 
 ### Example on replication data
 
-This is an example with a replication study done with N=415 students. In this study the same tasks have been used as on openpsychometrics.org. However, three different instructions were used to test the malleability of Simplex Number Bias: (1) no specific instruction (2) lottery (3) the task was to give unusual answers 
+This is an example with a replication study on N=415 students. In this study the same tasks as on openpsychometrics.org were used. However, three different instructions were tested to quantifiy the malleability of Simplex Number Bias: (1) no specific instruction (2) lottery (3) the task was to give unusual answers 
 
 ```R 
 
