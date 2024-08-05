@@ -56,6 +56,35 @@ bias <- RNGbiases(data, lowerlimits, upperlimits)
 
 
 
-![Screenshot](darktriad.png)
+
+
+### Example on replication data
+
+This is an example with a replication study done with N=415 students. In this study the same tasks have been used as on openpsychometrics.org. However, three different instructions were used to test the malleability of Simplex Number Bias: (1) no specific instruction (2) lottery (3) the task was to give unusual answers 
+
+```R 
+
+openpsychometrics <- openpsychometricsRNG
+students <- replicationRNG
+
+unspecific_discovery <- openpsychometrics[,2:21]
+unspecific_replication <- students[,4:23]
+uncommonanswers_students <- students[,24:43]
+lottery_students <- students[,45:64]
+
+
+biases <- RNGbiases(numbers, mins=mins,maxs=maxs,nsim=1000)
+biases1 <- RNGbiases(numbers1,mins=mins,maxs=maxs,nsim=1000)
+biases2 <- RNGbiases(numbers2,mins=mins,maxs=maxs,nsim=1000)
+biases3 <- RNGbiases(numbers3,mins=mins,maxs=maxs,nsim=1000)
+
+print(biases1$OddsRatios)
+
+
+
+```
+
+
+
 
 
