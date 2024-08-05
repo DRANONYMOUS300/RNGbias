@@ -28,7 +28,7 @@
 #' This function generates simulated datasets (`sim1M` and `sim1Mwithoutmissing`) where random number selection is uniform but introduces biases similar to those observed in the original dataset. Biases are quantified using helper functions such as `is_prime2`, `is_multiple`, `count_digit`, and `centrality`. The function calculates raw bias percentages (`rawbiasperc`), standardizes biases (`biaspercZ`), and computes composite bias scores (`compositebiasZ`).
 #'
 #' @examples
-#' data <- RNGopenpsychometrics
+#' data <- openpsychometricsRNG
 #' numbers <- data[,2:21]
 #' mins <- c(1,1,44,100,1,123,1,7,1,60,80,1,5,600,1,600,1,1,77,30)
 #' maxs <- c(100,1000,99,500,100,1234,100,50,100,140,90,100,8,800,100,800,4,100,4012,60)
