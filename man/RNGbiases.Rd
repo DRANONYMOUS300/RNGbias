@@ -2,43 +2,43 @@
 % Please edit documentation in R/RNGbiases.R
 \name{RNGbiases}
 \alias{RNGbiases}
-\title{Calculates the presence of simplex number biases in Random Number Generation tasks}
+\title{Calculates Simplex Number Biases in Random Number Generation Tasks}
 \usage{
 RNGbiases(data, mins, maxs, nsim = 10000, seed = 123456789)
 }
 \arguments{
-\item{data}{A numeric matrix or data frame containing the individual random number selections (rows = individuals, columns = tasks)}
+\item{data}{A numeric matrix or data frame containing individual random number selections (rows = individuals, columns = tasks).}
 
-\item{mins}{A numeric vector specifying the lower limit of each random number generation task (e.g. 1, if the task is 1-100)}
+\item{mins}{A numeric vector specifying the lower limit of each random number generation task (e.g., 1 if the task is 1-100).}
 
-\item{maxs}{A numeric vector specifying the lower limit of each random number generation task (e.g. 100, if the task is 1-100)}
+\item{maxs}{A numeric vector specifying the upper limit of each random number generation task (e.g., 100 if the task is 1-100).}
 
-\item{nsim}{Number of simulations to perform. Default is 10,000}
+\item{nsim}{An integer specifying the number of simulations to perform. Default is 10,000.}
 
-\item{seed}{Seed for reproducibility of simulations. Default is 123456789.}
+\item{seed}{An integer seed for reproducibility of simulations. Default is 123456789.}
 }
 \value{
 A list containing:
-  - `compositeZ`: A composite score indicating a person's propensity to simplex number bias (standardized scores compared to simulated data)
-  - `rawbias`: Raw bias percentages for seven typical biases
-  - `biasZ`: Standardized bias measures (Z scores for seven typical biases. Mean and SD are derived from simulated dataset).
+  - `compositebiasZ`: A composite score indicating a person's propensity to simplex number bias (standardized scores compared to simulated data).
+  - `rawbias`: Raw bias percentages for several typical biases.
+  - `biasZ`: Standardized bias measures (Z scores for several typical biases. Mean and SD are derived from the simulated dataset).
   - `primes`: Matrix indicating prime numbers in the original dataset.
   - `even`: Matrix indicating even numbers in the original dataset.
   - `mult5`: Matrix indicating multiples of 5 in the original dataset.
   - `mult10`: Matrix indicating multiples of 10 in the original dataset.
   - `c0`: Matrix indicating the presence of digit 0 in the original dataset.
   - `c5`: Matrix indicating the presence of digit 5 in the original dataset.
-  - `Central`: Matrix indicating the centrality of each value in the original dataset.
+  - `central`: Matrix indicating the centrality of each value in the original dataset.
+  - `popularity`: Matrix indicating the popularity of each value in the original dataset.
+  - `popularity2`: Matrix indicating the binary popularity of each value in the original dataset.
+  - `lownumber`: Matrix indicating low numbers in the original dataset.
+  - `OddsRatios`: Data frame containing odds ratios and confidence intervals for each bias.
 }
 \description{
-This function simulates datasets as a benchmark for true randomness.
+This function simulates datasets to benchmark true randomness and calculates the presence of simplex number biases.
 }
 \details{
-This function generates simulated datasets (`sim1M` and `sim1Mwithoutmissing`) where random number
-selection is uniform but introduces biases similar to those observed in the original dataset.
-Biases are quantified using functions such as `is_prime2`, `is_multiple`, `count_digit`, and `centrality`.
-The function calculates raw bias percentages (`rawbiasperc`), standardizes biases (`biaspercZ`),
-and computes composite bias scores (`compositebiasZ`).
+This function generates simulated datasets (`sim1M` and `sim1Mwithoutmissing`) where random number selection is uniform but introduces biases similar to those observed in the original dataset. Biases are quantified using helper functions such as `is_prime2`, `is_multiple`, `count_digit`, and `centrality`. The function calculates raw bias percentages (`rawbiasperc`), standardizes biases (`biaspercZ`), and computes composite bias scores (`compositebiasZ`).
 }
 \examples{
 data <- RNGopenpsychometrics

@@ -4,7 +4,7 @@
 \alias{centrality}
 \title{Calculate Centrality Measure}
 \usage{
-centrality(numbers, maxs, mins)
+centrality(numbers)
 }
 \arguments{
 \item{numbers}{A matrix or data frame of numeric values.}
