@@ -10,13 +10,15 @@ for (i in 1:ncol(numbers)){
 
   range <- maxs[i] - mins[i]
 
-  n20 <- round(range/5,digits=0)
+  n20 <- round(length(unique(numbers[,i]))/10,digits=0)
+
+  if (n20 == 0) {n20 <- 1}
 
 
   top20 <- as.numeric(names(t[1:n20]))
   nottop20 <- as.numeric(names(t[(n20+1):length(t)]))
 
-  for (j in 1:length(u)){
+
 
 
 
@@ -28,7 +30,7 @@ for (i in 1:ncol(numbers)){
     typical_bin[which(nr==TRUE),i] <- 0
 
 
-  }
+
 
 
 

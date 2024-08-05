@@ -20,7 +20,7 @@ library(RNGbias)
 Openpsychometrics.org provides a dataset on N=1,369 answers in twenty random number generation tasks.
 
 ```R 
-data <- RNGopenpsychometrics
+data <- openpsychometricsRNG
 
 numbers <- data[,2:21]
 
